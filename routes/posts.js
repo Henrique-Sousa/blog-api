@@ -1,9 +1,11 @@
 const router = require('express').Router();
+const post_controller = require('../controllers/postController');
 
-router.get('/', (req, res) => res.send('posts index'));
-router.post('/', (req, res) => res.send('posts create'));
-router.get('/:id', (req, res) => res.send('post show ' + req.params.id));
-router.put('/:id', (req, res) => res.send('post update ' + req.params.id));
-router.delete('/:id', (req, res) => res.send('post destroy ' + req.params.id));
+router.get('/', post_controller.index)
+router.post('/', post_controller.create)
+router.get('/:id', post_controller.show)
+router.put('/:id', post_controller.update)
+router.delete('/:id', post_controller.destroy)
 
 module.exports = router;
+
