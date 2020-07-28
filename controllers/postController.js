@@ -18,7 +18,11 @@ exports.create = (req, res) => {
   return res.send('post created');
 }
 
-exports.show = (req, res) => res.send('post show ' + req.params.id);
+exports.show = (req, res) => {
+  Post.findById(req.params.id, (err, result) => {
+    res.send(result);
+  });
+}
 
 exports.update = (req, res) => res.send('post update ' + req.params.id);
 
