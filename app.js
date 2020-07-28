@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded());
 
 app.use('/posts', posts_router);
-app.use('/comments', comments_router);
+app.use('/posts/:post_id/comments', comments_router);
 
 const port = process.env.PORT || '3000';
 app.listen(port, () => console.log('app listening on port ' +  port));
