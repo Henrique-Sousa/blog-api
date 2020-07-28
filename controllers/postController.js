@@ -1,12 +1,10 @@
 const Post = require('../models/post');
 
 // post list
-//exports.index = (req, res) => res.send('posts index');
 exports.index = (req, res) => {
   Post.find({}).exec((err, result) => res.send(result));
 }
 
-//exports.create = (req, res) => res.send('posts create');
 exports.create = (req, res) => {
   console.log(req.body.title);
   const post = new Post({
