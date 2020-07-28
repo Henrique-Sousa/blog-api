@@ -13,6 +13,9 @@ mongoose.connection.on("error", console.error.bind(console, "MongoDB connection 
 
 const app = express();
 
+app.use(express.json());
+app.use(express.urlencoded());
+
 app.use('/posts', posts_router);
 app.use('/comments', comments_router);
 

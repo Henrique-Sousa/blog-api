@@ -8,12 +8,13 @@ exports.index = (req, res) => {
 
 //exports.create = (req, res) => res.send('posts create');
 exports.create = (req, res) => {
+  console.log(req.body.title);
   const post = new Post({
-    title: 'test1',
+    title: req.body.title,
     timestamp: Date.now(),
     published: false,
     comments: [],
-    content: 'Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo.'
+    content: req.body.content
   });
   post.save();
   return res.send('post created');
