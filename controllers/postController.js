@@ -24,4 +24,8 @@ exports.show = (req, res) => res.send('post show ' + req.params.id);
 
 exports.update = (req, res) => res.send('post update ' + req.params.id);
 
-exports.destroy = (req, res) => res.send('post destroy ' + req.params.id);
+exports.destroy = (req, res) => {
+  Post.findByIdAndDelete(req.params.id, err => {
+    res.send('post destroy ' + req.params.id);
+  });
+}
