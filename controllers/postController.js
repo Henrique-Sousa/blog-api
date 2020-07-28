@@ -18,7 +18,7 @@ exports.create = (req, res) => {
 }
 
 exports.show = (req, res) => {
-  Post.findById(req.params.id, (err, result) => {
+  Post.findById(req.params.post_id, (err, result) => {
     res.send(result);
   });
 }
@@ -30,15 +30,15 @@ exports.update = (req, res) => {
     published: req.body.published,
     comments: req.body.comments,
     content: req.body.content,
-    _id: req.params.id
+    _id: req.params.post_id
   });
-  Post.findByIdAndUpdate(req.params.id, edited_post, {}, err => {
+  Post.findByIdAndUpdate(req.params.post_id, edited_post, {}, err => {
     res.send(edited_post);
   });
 }
 
 exports.destroy = (req, res) => {
-  Post.findByIdAndDelete(req.params.id, (err, deleted_post) => {
+  Post.findByIdAndDelete(req.params.post_id, (err, deleted_post) => {
     res.send(deleted_post);
   });
 }
