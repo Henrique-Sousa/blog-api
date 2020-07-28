@@ -6,7 +6,6 @@ exports.index = (req, res) => {
 }
 
 exports.create = (req, res) => {
-  console.log(req.body.title);
   const post = new Post({
     title: req.body.title,
     timestamp: Date.now(),
@@ -24,7 +23,19 @@ exports.show = (req, res) => {
   });
 }
 
-exports.update = (req, res) => res.send('post update ' + req.params.id);
+exports.update = (req, res) => {
+  const edited_post = new Post({
+    title: req.body.title,
+    timestamp: Date.now(),
+    published: req.body.published,
+    comments: req.body.comments,
+    content: req.body.content,
+    _id: req.params.id
+  });
+  Post.findByIdAndUpdate(req.params.id, edited_post, {}, err => {
+    res.send('post updated');
+  });
+}
 
 exports.destroy = (req, res) => {
   Post.findByIdAndDelete(req.params.id, err => {
