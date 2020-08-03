@@ -21,7 +21,15 @@ exports.create = (req, res) => {
   });
 }
 
-exports.show = (req, res) => res.send('comment show ' + req.params.comment_id);
+exports.show = (req, res) => {
+  let post_id = req.params.post_id;
+  let comment_id = req.params.comment_id;
+  Post.findOne({_id: post_id, comments: comment_id}).populate('comments').exec((err, post) => {
+    if(!post) { return res.send({}); }
+    return res.send(post.comments.find(comment => comment._id.equals(comment_id)));
+    
+  });
+}
 
 exports.update = (req, res) => res.send('comment update ' + req.params.comment_id);
 
