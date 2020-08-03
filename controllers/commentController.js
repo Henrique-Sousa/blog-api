@@ -2,7 +2,11 @@ const Comment = require('../models/comment');
 const Post = require('../models/post');
 
 // comments list
-exports.index = (req, res) => res.send('comments index');
+exports.index = (req, res) => {
+  Post.findById(req.params.post_id).populate('comments').exec((err, post) => {
+    res.send(post.comments);
+  });
+}
 
 exports.create = (req, res) => {
   const comment = new Comment({
