@@ -43,5 +43,9 @@ exports.update = (req, res) => {
   });
 }
 
-exports.destroy = (req, res) => res.send('comment destroy ' + req.params.comment_id);
+exports.destroy = (req, res) => {
+  Comment.findByIdAndDelete(req.params.comment_id, (err, deleted_comment) => {
+    res.send(deleted_comment);
+  });
+}
 
