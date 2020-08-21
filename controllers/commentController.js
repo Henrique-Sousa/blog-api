@@ -31,7 +31,17 @@ exports.show = (req, res) => {
   });
 }
 
-exports.update = (req, res) => res.send('comment update ' + req.params.comment_id);
+exports.update = (req, res) => {
+  const edited_comment = new Comment({
+    author: req.body.author,
+    timestamp: Date.now(),
+    content: req.body.content,
+    _id: req.params.comment_id
+  });
+  Comment.findByIdAndUpdate(req.params.comment_id, edited_comment, {}, err => {
+    res.send(edited_comment);
+  });
+}
 
 exports.destroy = (req, res) => res.send('comment destroy ' + req.params.comment_id);
 
