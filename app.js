@@ -16,6 +16,11 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded());
 
+app.use(function (req, res, next) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    next();
+});
+
 app.use('/posts', posts_router);
 app.use('/posts/:post_id/comments', comments_router);
 
