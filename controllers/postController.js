@@ -2,7 +2,7 @@ const Post = require('../models/post');
 
 // post list
 exports.index = (req, res) => {
-  Post.find({}).exec((err, result) => res.send(result));
+  Post.find({'published': true}).exec((err, result) => res.send(result));
 }
 
 exports.create = (req, res) => {
